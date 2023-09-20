@@ -30,5 +30,34 @@ public class TermoServiceImpl implements TermoService {
 
 		return termoDao.findById(id).orElse(null);
 	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public void deleteById(Long id) {
+		termoDao.deleteById(id);
+	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public void putTermo(Long id, String name, String marca) {
+		Termo actual = termoDao.findById(id).orElse(null);
+		actual.setName(name);
+		actual.setMarca(marca);
+		termoDao.save(actual);
+		return;
+	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public void postTermo(String name, String marca) {
+		// Create a new Termo object with the given name and marca
+	    Termo newTermo = new Termo();
+	    newTermo.setName(name);
+	    newTermo.setMarca(marca);
+
+	    // Save the new Termo object to the database using the termoDao
+	    Termo savedTermo = termoDao.save(newTermo);
+	}
+	
 
 }
