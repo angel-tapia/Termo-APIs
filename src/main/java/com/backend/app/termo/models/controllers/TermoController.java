@@ -31,20 +31,20 @@ public class TermoController {
 	}
 	
 	@DeleteMapping("/termo/{id}")
-	public void deleteById(@PathVariable Long id) {
+	public String deleteById(@PathVariable Long id) {
 		service.deleteById(id);
-		return;
+		return "Deleted termo with id: " + id;
 	}
 	
 	@PutMapping("/termo")
-	public void putTermo(@RequestBody Termo termo) {
+	public String putTermo(@RequestBody Termo termo) {
 		service.putTermo(termo.getId(), termo.getName(), termo.getMarca());
-		return;
+		return "Modified termo with id: " + termo.getId();
 	}
 	
 	@PostMapping("/termo")
-	public void postTermo(@RequestBody Termo termo) {
+	public String postTermo(@RequestBody Termo termo) {
 		service.postTermo(termo.getName(), termo.getMarca());
-		return;
+		return "Posted termo with name: " + termo.getName() + " and brand: " + termo.getMarca();
 	}
 }

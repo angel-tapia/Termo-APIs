@@ -35,6 +35,7 @@ public class TermoServiceImpl implements TermoService {
 	@Transactional(readOnly = false)
 	public void deleteById(Long id) {
 		termoDao.deleteById(id);
+		return;
 	}
 	
 	@Override
@@ -55,8 +56,8 @@ public class TermoServiceImpl implements TermoService {
 	    newTermo.setName(name);
 	    newTermo.setMarca(marca);
 
-	    // Save the new Termo object to the database using the termoDao
-	    Termo savedTermo = termoDao.save(newTermo);
+	    termoDao.save(newTermo);
+	    return;
 	}
 	
 
